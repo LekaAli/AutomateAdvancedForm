@@ -10,7 +10,7 @@ import Utils.TakesScreenshots;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class base {
+public class BaseFactory {
     BrowserFactory browserFactory = new BrowserFactory();
 
     final WebDriver driver = browserFactory.launchBrowser("chrome","https://ndosisimplifiedautomation.vercel.app/");

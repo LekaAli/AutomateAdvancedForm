@@ -3,7 +3,7 @@ package Tests;
 import Utils.ReadData;
 import org.testng.annotations.Test;
 
-public class WebAutomationAdvanceTests extends base {
+public class WebAutomationAdvanceTests extends BaseFactory {
 
 
     @Test
