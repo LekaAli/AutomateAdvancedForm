@@ -19,7 +19,7 @@ public class BrowserFactory {
             driver = new ChromeDriver(chromeOptions);
         } else if (browserChoice.equalsIgnoreCase("edge")) {
             EdgeOptions edgeOptions = new EdgeOptions();
-//            edgeOptions.addArguments("--headless=new");
+            edgeOptions.addArguments("--headless=new");
             driver = new EdgeDriver(edgeOptions);
             driver.manage().window().setSize(new Dimension(1920, 1080));
         } else {
