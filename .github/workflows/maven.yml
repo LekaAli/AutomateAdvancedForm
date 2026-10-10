@@ -30,7 +30,7 @@ jobs:
       - name: Context Test
         env:
           JOB_NAME: "LekaAli"
-        run: echo "${{ secrets.DOCKER_PASSWORD }}"
+        run: echo $JOB_NAME
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
