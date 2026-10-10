@@ -29,7 +29,7 @@ jobs:
 
       - name: Context Test
         env:
-          JOB_CONTEXT: ${{ toJson(vars) }}
+          JOB_CONTEXT: ${{ vars.DOCKER }}
         run: echo "$JOB_CONTEXT"
 
       - name: Set up JDK 21
