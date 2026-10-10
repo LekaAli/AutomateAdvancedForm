@@ -29,8 +29,8 @@ jobs:
 
       - name: Context Test
         env:
-          JOB_CONTEXT: ${{ env }}
-        run: echo "$JOB_CONTEXT"
+          JOB_NAME: "LekaAli"
+        run: echo "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
