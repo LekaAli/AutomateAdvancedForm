@@ -10,6 +10,22 @@ name: Java CI with Maven
 run-name: ${{github.actor}} is testing on GitHub Actions
 on:
   workflow_dispatch:
+    inputs:
+      build_id:
+        description: "Build ID"
+        required: true
+        type: number
+        default: 1
+      deploy_target:
+        description: "Deploy Target"
+        required: true
+        type: string
+        default: "dev"
+      perform_deploy:
+        description: "Perform deploy"
+        required: true
+        type: boolean
+        default: true
   push:
     branches: [ "main", "master" ]
   pull_request:
@@ -23,7 +39,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         java-version: [21]
     environment: dev
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && inputs.perform_deploy }}
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
