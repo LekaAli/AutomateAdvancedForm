@@ -39,7 +39,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         java-version: [21]
     environment: dev
-    if: ${{ github.event_name == 'push' && inputs.perform_deploy }}
+    if: ${{ inputs.perform_deploy }}
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
