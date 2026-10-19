@@ -24,8 +24,8 @@ on:
       java-version:
         description: "Java version"
         required: true
-        type: number
-        default: 21
+        type: string
+        default: '21'
 
 jobs:
   build:
