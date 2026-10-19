@@ -6,80 +6,18 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Trigger CI workflow
 run-name: ${{github.actor}} is testing on GitHub Actions
 on:
-  workflow_dispatch:
-    inputs:
-      build_id:
-        description: "Build ID"
-        required: true
-        type: number
-        default: 1
-      deploy_target:
-        description: "Deploy Target"
-        required: true
-        type: string
-        default: "dev"
-      perform_deploy:
-        description: "Perform deploy"
-        required: true
-        type: boolean
-        default: true
-      java-version:
-        description: "Java version"
-        required: true
-        type: number
-        default: 21
   push:
-    branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
+    branches: [ main, master ]
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        java-version: [21]
-    environment: dev
-    if: ${{ github.event_name == 'push' || inputs.perform_deploy }}
-    steps:
-      - run: echo "🎉 inputs.perform_deploy ${{ inputs.perform_deploy }}"
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - run: echo "Environment aware variable ${{ vars.ENV_NAME }}"
-      - run: echo "Common to all environment variable ${{ vars.JOB_NAME }}"
+    uses: ./.github/workflows/reusable_workflow.yaml
+    with:
+      java-version: 21
+      deploy_target: dev
+      perform_deploy: true
 
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Context Test
-        env:
-          JOB_NAME: "LekaAli"
-        run: echo $JOB_NAME
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ matrix.java-version }}
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Build and test with Maven
-        run: mvn -B test --file pom.xml
-
-      - name: Upload test reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: |
-            target/Report/
-            target/surefire-reports/
-            target/Screenshots/
-          if-no-files-found: warn
-          retention-days: 14
 
