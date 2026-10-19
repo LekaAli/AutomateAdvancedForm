@@ -16,7 +16,7 @@ jobs:
   build:
     uses: ./.github/workflows/reusable_workflow.yaml
     with:
-      java-version: "21"
+      java-version: 21
       deploy_target: "dev"
       perform_deploy: true
 
