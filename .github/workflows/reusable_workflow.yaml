@@ -15,17 +15,17 @@ on:
         description: "Deploy Target"
         required: true
         type: string
-        default: "dev"
+        default: "staging"
       perform_deploy:
         description: "Perform deploy"
         required: true
         type: boolean
-        default: true
+        default: false
       java-version:
         description: "Java version"
         required: true
         type: number
-        default: 21
+        default: 18
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     environment: ${{ inputs.deploy_target }}
-    if: ${{ github.event_name == 'push' || inputs.perform_deploy }}
+    if: ${{ github.event_name == 'push' && inputs.perform_deploy }}
     steps:
       - run: echo "🎉 inputs.perform_deploy ${{ inputs.perform_deploy }}"
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
