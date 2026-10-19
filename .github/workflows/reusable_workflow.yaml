@@ -13,7 +13,7 @@ on:
     inputs:
       deploy_target:
         description: "Deploy Target"
-        required: true
+        required: false
         type: string
         default: "staging"
       perform_deploy:
