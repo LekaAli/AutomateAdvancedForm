@@ -7,7 +7,7 @@
 # documentation.
 
 name: Reusable workflow
-run-name: ${{github.actor}} is testing on GitHub Actions
+run-name: Reusable workflow testing on GitHub Actions
 on:
   workflow_call:
     inputs:
