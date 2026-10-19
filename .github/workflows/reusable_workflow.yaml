@@ -6,6 +6,10 @@ on:
       config-path:
         required: true
         type: string
+      java-version:
+        required: true
+        type: number
+        default: 21
     secrets:
       personal_access_token:
         required: true
