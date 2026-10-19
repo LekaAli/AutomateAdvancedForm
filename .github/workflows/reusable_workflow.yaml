@@ -9,7 +9,7 @@
 name: Reusable workflow
 run-name: ${{github.actor}} is testing on GitHub Actions
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       deploy_target:
         description: "Deploy Target"
