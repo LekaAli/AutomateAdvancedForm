@@ -26,6 +26,11 @@ on:
         required: true
         type: boolean
         default: true
+      java-version:
+        description: "Java version"
+        required: true
+        type: number
+        default: 21
   push:
     branches: [ "main", "master" ]
   pull_request:
